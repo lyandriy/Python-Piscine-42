@@ -7,6 +7,7 @@ class Vector:
                 self.values = values
                 self.shape = (len(self.values), len(self.values[0]))
             elif isinstance(values[0], list):
+                print("HOLAAAAA")
                 self.values = values
                 self.shape = (len(self.values), len(self.values[0]))
             else:
@@ -38,6 +39,13 @@ class Vector:
 
     
     def T(self):
-        if self.shape[0] == 1:
-            
-        else:
+        new_values = []
+        if self.shape[0] == 1:#una [[1., 2., 3.]]
+            for x in self.values[0]:
+                new_values.append([x])
+        if self.shape[1] == 1:#varias [[0.0], [1.0], [2.0], [3.0]]
+            new_list = []
+            for x in self.values[0]:
+                new_list.append(x[0])
+            new_values.append(new_list)
+        return new_values
