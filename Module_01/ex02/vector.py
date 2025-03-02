@@ -99,7 +99,7 @@ class Vector:
     
     #__str__ __repr__  must be identical, i.e we expect that print(vector) and vector within python interpretor behave the same, see correspondi
     def __repr__(self):
-        return f"Vector({self.values})"
+        return f"{self.values}"
     
     def __str__(self):
         return f"Vector({self.values})"
@@ -111,6 +111,8 @@ class Vector:
         return self.values[index]
 
     def dot(self, other):
+        print(self)
+        print(other)
         if isinstance(other, Vector) and self.shape == other.shape:
             if self.shape[0] == 1:#es una lista
                 return sum(self.values[0][i] * other.values[0][i] for i in range(self.shape[1]))
@@ -122,12 +124,10 @@ class Vector:
     
     def T(self):
         new_values = []
-        print(self.shape)
         if self.shape[0] == 1:#una [[1., 2., 3.]]
             for x in self.values[0]:
                 new_values.append([x])
         if self.shape[1] == 1:#varias [[0.0], [1.0], [2.0], [3.0]]
             for x in self.values:
-                print(x)
                 new_values.append(x)
         return Vector(new_values)
