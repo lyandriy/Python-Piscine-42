@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Básico</title>
+</head>
+<body>
+    <h1>WebSocket con Python</h1>
+    <input type="text" id="messageInput" placeholder="Escribe un mensaje">
+    <button onclick="sendMessage()">Enviar</button>
+    <p id="response"></p>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8765");
+
+        ws.onopen = () => {
+            console.log("Conectado al servidor WebSocket");
+        };
+
+        ws.onmessage = (event) => {
+            document.getElementById("response").innerText = "Servidor: " + event.data;
+        };
+
+        function sendMessage() {
+            const message = document.getElementById("messageInput").value;
+            ws.send(message);
+        }
+    </script>
+</body>
+</html>
